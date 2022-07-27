@@ -1,0 +1,297 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            margin: auto;
+            width: 85%;
+            padding: 10px;
+            height: auto;
+            font-size: 15px;
+        }
+
+        .measurement-area {
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+            margin: -5;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            /* align horizontal */
+            align-items: center;
+            /* align vertical */
+        }
+
+        .icon {
+            width: 25px;
+            height: 25px;
+            margin-top: -1px;
+        }
+
+        .image {
+            width: 60px;
+            height: 60px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .img-area {
+            /* margin: 15px; */
+            margin: none;
+        }
+
+        span {
+            font-weight: 600;
+
+        }
+
+        .SCD-Title {
+            font-weight: 600;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .dynamic-text {
+            font-size: 10px;
+            text-align: center;
+            color: #323232;
+        }
+
+        .measurement-title {
+            margin-top: 2px;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+        <table style="width: 100%; border: 1px solid black; font-size: 13px;">
+            <tbody>
+                <tr style="background-color: gray; color: rgb(248, 246, 246);">
+                    <th>Parx DIY Denim Order Sheet</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="width: 50%; float: left;">
+                            <p><span>Order No. :</span> {{buyer.data.order_id }}</p>
+                            <p><span>Fabric Code :</span> {{ invoice.fabric_code }}</p>
+                            <!-- <p><span>Fabric Name :</span> Payton/Light</p> -->
+                            <p><span>SKU Style Code:</span> {{ invoice.variant_sku }}</p>
+                        </div>
+                        <div style="width: 50%; float: left;">
+                            <p><span>Customer Name:</span>{{ buyer.data.user.name }}</p>
+                            <p><span>Assign Date :</span> {{invoice.order.order_date}}</p>
+                            <p><span>Expected Delivery Date :</span> {{invoice.exp_dte}}</p>
+                            <!-- <p><span>SKU Code:</span> DNFPAY001-SL</p> -->
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="measurement-area" style="border: 1px solid black;">
+                        <p class="measurement-title">Measurement Details</p>
+                    </th>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div style="width: 50%; float: left;">
+                            <p><span>Fit:</span> {{ invoice.fit }}</p>
+                            <p><span>Brand Fit:</span> {{ invoice.fit }}</p>
+                            <p><span>Brand Size:</span> {{ invoice.size }}</p>
+                        </div>
+                        <div style="width: 50%; float: left;">
+                            <p><span>Customer Height:</span> {{ invoice.height }}</p>
+                            <p><span>Length Type:</span> {{ invoice.length }}</p>
+                            <p><span>Inseam Length:</span> {{ invoice.inseamLength }}"</p>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+
+            <tr>
+                <th class="measurement-area" style="border: 1px solid black;">
+                    <p class="measurement-title">Style Customization Details</p>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div style="margin-top: 10px;">
+                        <div style="width: 16.66%; float: left; margin-top: -20px;">
+                            <p class="SCD-Title">Fly Opening</p>
+                            <div style="height: 30px">
+                                <p style="text-align: center;" class="dynamic-text">{{
+                                    invoice.style_name.fly_opening_name }}</p>
+                            </div>
+
+
+                            <div class="img-area">
+                                <img class="image" src={{ invoice.style.fly_opening }} alt="">
+                            </div>
+                        </div>
+                        <div style="width: 16.66%; float: left; margin-top: -20px;">
+                            <p class="SCD-Title">Coin Pocket</p>
+                            <div style="height: 30px">
+                                <p style="text-align: center;" class="dynamic-text">{{
+                                    invoice.style_name.coin_pocket_name }}</p>
+                            </div>
+
+                            <div class="img-area">
+                                <img class="image" src={{ invoice.style.coin_pocket }} alt="">
+                            </div>
+                        </div>
+                        <div style="width: 16.66%; float: left; margin-top: -20px;">
+                            <p class="SCD-Title">Button Style</p>
+                            <div style="height: 30px">
+                                <p style="text-align: center;" class="dynamic-text">{{
+                                    invoice.style_name.button_rivet_name }}</p>
+                            </div>
+
+                            <div class="img-area">
+                                <img class="image" src={{ invoice.style.button_rivet }} alt="">
+                            </div>
+                        </div>
+                        <!-- <div style="width: 16.66%; float: left; margin-top: -20px;">
+                            <p class="SCD-Title">Rivette Style</p>
+                            <div style="height: 30px">
+                                <p style=" text-align: center;">None</p>
+                            </div>
+
+                            <div class="img-area">
+                                <img class="image" src={{ invoice.style.rivette }} alt="">
+                            </div>
+                        </div> -->
+                        
+                        <div style="width: 16.66%; float: left; margin-top: -20px;">
+                            <p class="SCD-Title">Back Pocket</p>
+                            <div style="height: 30px">
+                                <p style="text-align: center;" class="dynamic-text">{{
+                                    invoice.style_name.back_pocket_name }}</p>
+
+                            </div>
+
+                            <div class="img-area">
+                                <img class="image" src={{ invoice.style.back_pocket }} alt="">
+                            </div>
+                        </div>
+                        <div style="width: 16.66%; float: left; margin-top: -20px;">
+                            <p class="SCD-Title">Deco Stitch</p>
+                            <div style="height: 30px">
+                                <p style="text-align: center;" class="dynamic-text">{{
+                                    invoice.style_name.back_deco_stitch_name }}</p>
+
+                            </div>
+
+                            <div class="img-area">
+                                <img class="image" src={{ invoice.style.back_deco_stitch }} alt="">
+                            </div>
+                        </div>
+                        <div style="width: 16.66%; float: left; margin-top: -20px;">
+                            <p class="SCD-Title">Leather Patch</p>
+                            <div style="height: 30px">
+                                <p style="text-align: center;" class="dynamic-text">{{
+                                    invoice.style_name.leather_patch_name }}</p>
+                            </div>
+
+                            <div class="img-area">
+                                <img class="image" src={{ invoice.style.leather_patch }} alt="">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <hr>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div style="width: 16.66%; float: left; margin-top: -20px;">
+                        <p class="SCD-Title">Stitch Color</p>
+                        <div style="height: 30px">
+                            <p style=" text-align: center;">{{ invoice.style_name.stitch_color_name
+                                }}</p>
+                        </div>
+
+                        <div class="img-area">
+                            <img class="image" src={{ invoice.style.stitch_color }} alt="">
+                        </div>
+                    </div>
+                    <div style="width: 16.66%; float: left; margin-top: -20px; ">
+                        <p class="SCD-Title">Torn LD</p>
+                        <div style="height: 30px">
+                            <p style="text-align: center;" class="dynamic-text">{{
+                                invoice.style_name.l_lower_name }}</p>
+                        </div>
+
+                        <div class="img-area">
+                            <img class="image" src={{ invoice.style.l_lower }} alt="">
+                        </div>
+                    </div>
+                    <div style="width: 16.66%; float: left; margin-top: -20px;">
+                        <p class="SCD-Title">Torn RD</p>
+                        <div style="height: 30px">
+                            <p style="text-align: center;" class="dynamic-text">{{
+                                invoice.style_name.r_lower_name }}</p>
+                        </div>
+
+                        <div class="img-area">
+                            <img class="image" src={{ invoice.style.r_lower }} alt="">
+                        </div>
+                    </div>
+                    <div style="width: 16.66%; float: left; margin-top: -20px;">
+                        <p class="SCD-Title">Torn LU</p>
+                        <div style="height: 30px">
+                            <p style="text-align: center;" class="dynamic-text">{{
+                                invoice.style_name.l_upper_name }}</p>
+                        </div>
+
+                        <div class="img-area">
+                            <img class="image" src={{ invoice.style.l_upper }} alt="">
+                        </div>
+                    </div>
+                    <div style="width: 16.66%; float: left; margin-top: -20px;">
+                        <p class="SCD-Title">Torn RU</p>
+                        <div style="height: 30px">
+                            <p style="text-align: center;" class="dynamic-text">{{
+                                invoice.style_name.r_upper_name }}</p>
+                        </div>
+
+                        <div class="img-area">
+                            <img class="image" src={{ invoice.style.r_upper }} alt="">
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <th class="measurement-area" style="border: 2px solid black; margin-top: 10px;">
+                    <p class="measurement-title">Embroidery Details</p>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div style="width: 100%; float: left;">
+                        <p><span>Initials: {{ invoice.initials }} </span></p>
+                        <!-- <p><span>Style: {{ invoice.style.leather_patch }}</span></p> -->
+                        <p><span>Color: {{ invoice.color }}</span></p>
+                        <p><span>Position: {{ invoice.position }}</span></p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

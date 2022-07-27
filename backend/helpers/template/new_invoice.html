@@ -1,0 +1,573 @@
+<html>
+
+<head>
+  <title>DIY Invoice</title>
+
+  <style>
+    .customize-list {
+      padding-left: 2%;
+      font-size: 12px;
+    }
+
+    .customize-right-td {
+      width: 25%;
+    }
+
+    .customize-left-td {
+      width: 75%;
+    }
+
+    .order-section {
+      font-size: 15px;
+    }
+
+    .style-section {
+      font-size: 15px;
+    }
+
+    .right-border {
+      border-right: 1px solid black;
+      /* text-align: center; */
+      text-align: left;
+      padding: 15px;
+    }
+
+    .right-border:last-child {
+      border-right: none;
+    }
+
+    .solid-border {
+      border: 1px solid black;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .border {
+      border: 1px solid black;
+    }
+
+    .img_size {
+      height: 90;
+      width: 90;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <table style="width: 100%">
+      <tr>
+        <td align="left">
+          <h3 style="margin-left: 7px">MYRAYMOND</h3>
+        </td>
+        <td align="right">
+          <h3 style="margin-bottom: 0; margin-right: 7px; margin-top: 9px">
+            Order Invoice
+          </h3>
+          <h5 style="margin-top: 0; margin-right: 7px">#{{buyer.data.order_id }}</h5>
+        </td>
+      </tr>
+    </table>
+    <h5 style="padding-bottom: 0; margin-bottom: 0">
+      Order & Account Information
+    </h5>
+    <hr />
+    <table style="width: 100%">
+      <tr>
+        <td align="left">
+          <h5>Order Information</h5>
+          <p class="order-section">Order Date :{{invoice.order.order_date}}</p>
+          <p class="order-section">Order Status :{{invoice.order.order_status}}</p>
+          <p class="order-section">Payment Status :{{invoice.order.payment_status}}</p>
+        </td>
+        <td></td>
+        <td>
+          <h5>Account Information</h5>
+          <p class="order-section">Customer Name :{{ buyer.data.user.name }}</p>
+          <p class="order-section">Customer Email :{{ buyer.data.user.email }}</p>
+          <p class="order-section">Customer Phone :{{ buyer.data.user.mobile }}</p>
+        </td>
+      </tr>
+    </table>
+    <h5 style="padding-bottom: 0; margin-bottom: 0">Address Information</h5>
+    <hr />
+    <table style="width: 100%">
+      <tr>
+        <td align="left">
+          <h5>Billing Address</h5>
+          <p class="order-section">{{ buyer.data.shipping_info.name }}</p>
+          <p class="order-section">
+            {{ buyer.data.shipping_info.shipping_address_1 }}
+          </p>
+          <p class="order-section">{{ buyer.data.shipping_info.shipping_address_2 }}</p>
+          <p class="order-section">{{ buyer.data.shipping_info.shipping_state }}</p>
+          <p class="order-section">{{ buyer.data.shipping_info.shipping_city }} - {{
+            buyer.data.shipping_info.shipping_zip
+            }}</p>
+          <p class="order-section">Phone Number : {{ buyer.data.shipping_info.mobile }}</p>
+        </td>
+        <td></td>
+        <td>
+          <h5>Shipping Address</h5>
+          <p class="order-section">{{ buyer.data.billing_info.name }}</p>
+          <p class="order-section">
+            {{ buyer.data.billing_info.billing_address_1 }}
+          </p>
+          <p class="order-section">{{ buyer.data.billing_info.billing_address_2 }}</p>
+          <p class="order-section">{{ buyer.data.billing_info.billing_state }}</p>
+          <p class="order-section">{{ buyer.data.billing_info.billing_city }} - {{ buyer.data.billing_info.billing_zip
+            }}</p>
+          <p class="order-section">Phone Number : {{ buyer.data.billing_info.mobile }}</p>
+        </td>
+      </tr>
+    </table>
+    <h5 style="padding-bottom: 0; margin-bottom: 0">Pattern Details</h5>
+    <hr />
+    <table style="width: 100%">
+      <tr>
+        <td align="left" style="border: 1px solid black; padding: 7px">
+          <p class="order-section">Pattern(Inch)</p>
+          <p class="order-section">D_Waist : {{ invoice.pattern.d_waist }}</p>
+          <p class="order-section">D_hip : {{ invoice.pattern.d_hip }}</p>
+          <p class="order-section">D_thigh : {{ invoice.pattern.d_thigh }}</p>
+          <p class="order-section">D_knee : {{ invoice.pattern.d_knee }}</p>
+          <p class="order-section">D_bottom : {{ invoice.pattern.d_bottom }}</p>
+          <p class="order-section">D_front_rise : {{ invoice.pattern.d_front_rise }}</p>
+          <p class="order-section">D_back_rise : {{ invoice.pattern.d_back_rise }}</p>
+          <p class="order-section">D_Out_Seam : {{ invoice.pattern.d_out_seam }}</p>
+          <p class="order-section">D_Inseam : {{ invoice.pattern.d_inseam }}</p>
+        </td>
+        <td></td>
+        <td>
+          <h4 style="margin-left: 40%">Selected Size : {{ invoice.size }}</h4>
+          <h4 style="margin-left: 35%">Selected Fit : {{ invoice.fit }}</h4>
+        </td>
+      </tr>
+    </table>
+    <h5 style="padding-bottom: 0; margin-bottom: 0">Style Details</h5>
+    <hr />
+    <table class="solid-border">
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Fly Opening :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.fly_opening }}</p>
+        </td>
+      </tr>
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Fly Style :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.fly_style }}</p>
+        </td>
+      </tr>
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Coin Pocket :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.coin_pocket }}</p>
+        </td>
+      </tr>
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Back Pocket :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.back_pocket }}</p>
+        </td>
+      </tr>
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Back Pocket Stitch :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.back_deco_stitch }}</p>
+        </td>
+      </tr>
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Inseam :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.inseam }}</p>
+        </td>
+      </tr>
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Outseam :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.outseam }}</p>
+        </td>
+      </tr>
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Stitch color :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.stitch_color }}</p>
+        </td>
+      </tr>
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Leather Patch :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.leather_patch }}</p>
+        </td>
+      </tr>
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Button :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.button_rivet }}</p>
+        </td>
+      </tr>
+      <!-- <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Waist :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.opening }}</p>
+        </td>
+      </tr>
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">D Out Seam :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.opening }}</p>
+        </td>
+      </tr> -->
+      <tr class="solid-border">
+        <td align="left" style="border: 1px solid black">
+          <p class="style-section">Torn :</p>
+        </td>
+        <td style="border: 1px solid black">
+          <p class="style-section">{{ invoice.style.torn }}</p>
+        </td>
+      </tr>
+    </table>
+    <h5 style="padding-bottom: 0; margin-bottom: 0">Customization List</h5>
+    <hr />
+    <table width="100%" border="1px" style="border-collapse: collapse">
+      <tr>
+        <td width="25%" class="customize-list">Style :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img src={{invoice.style_fit1}} class="img_size" alt="" />
+                <p>Skinny Fit</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{invoice.style_fit2}} alt="" />
+                <p>Slim Fit</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{invoice.style_fit3}} alt="" />
+                <p>Straight Fit</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Fly Opening :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.fly_opening1}} alt="" />
+                <p>Fly Opening Zipper </p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.fly_opening2}} alt="" />
+                <p>Fly Opening Button</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Fly Style :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{invoice.fly_style1}} alt="" />
+                <p>Fly Style 1 </p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{invoice.fly_style2}} alt="" />
+                <p>Fly Style 2 </p>
+              </td>
+
+              <td class="right-border">
+                <img class="img_size" src={{invoice.fly_style3}} alt="" />
+                <p>Fly Style 3</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Torn :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{invoice.l_lower}} alt="" />
+                <p>Left Lower</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{invoice.l_upper}} alt="" />
+                <p>Left Upper</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{invoice.r_lower}} alt="" />
+                <p>Right Lower</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{invoice.r_upper}} alt="" />
+                <p>Right Upper</p>
+              </td>
+              <!-- <td class="right-border">
+                <img class="img_size" src="../../uploads/icons/Torn/Torn-full.png" alt="" />
+                <p>Product Name</p>
+              </td> -->
+
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Coin Pocket :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.coin1}} alt="" />
+                <p>Coin Pocket 1</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.coin2}} alt="" />
+                <p>Coin Pocket 2</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.coin3}} alt="" />
+                <p>Coin Pocket 3</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.coin4}} alt="" />
+                <p>Coin Pocket 4</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.coin5}} alt="" />
+                <p>Coin Pocket 5</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.coin6}} alt="" />
+                <p>Coin Pocket 6</p>
+              </td>
+
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Back Pocket :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.back_pocket1 }} alt="" />
+                <p>Back Pocket 1</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.back_pocket2 }} alt="" />
+                <p>Back Pocket 2</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.back_pocket3 }} alt="" />
+                <p>Back Pocket 3</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.back_pocket4 }} alt="" />
+                <p>Back Pocket 4</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Back Deco Stitch :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.deco_sticth1 }} alt="" />
+                <p>Pocket Deco Stitch 1</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.deco_sticth2 }} alt="" />
+                <p>Pocket Deco Stitch 2</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.deco_sticth3 }} alt="" />
+                <p>Pocket Deco Stitch 3</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.deco_sticth4 }} alt="" />
+                <p>Pocket Deco Stitch 3</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.deco_sticth5 }} alt="" />
+                <p>Pocket Deco Stitch 4</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.deco_sticth6 }} alt="" />
+                <p>Pocket Deco Stitch 5</p>
+              </td>
+
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Inseam :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.inseam1 }} alt="" />
+                <p>Inseam 1</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.inseam2 }} alt="" />
+                <p>Inseam 2</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Outsteam :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.outsteam1 }} alt="" />
+                <p>Out Steam 1</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.outsteam2 }} alt="" />
+                <p>Out Steam 2</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Leather Patch :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.leather_patch1}} alt="" />
+                <p>Leather Patch 1</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.leather_patch2}} alt="" />
+                <p>Leather Patch 2</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.leather_patch3}} alt="" />
+                <p>Leather Patch 3</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.leather_patch4}} alt="" />
+                <p>Leather Patch 4</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.leather_patch5}} alt="" />
+                <p>Leather Patch 5</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.leather_patch6}} alt="" />
+                <p>Leather Patch 6</p>
+              </td>
+
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Button & Rivet :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.button1}} alt="" />
+                <p>Button Style 1</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.button2}} alt="" />
+                <p>Button Style 2</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.button3}} alt="" />
+                <p>Button Style 3</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.button4}} alt="" />
+                <p>Button Style 4</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.button5}} alt="" />
+                <p>Button Style 5</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.button6}} alt="" />
+                <p>Button Style 6</p>
+              </td>
+
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td width="25%" class="customize-list">Stitch Color :</td>
+        <td width="75%">
+          <table>
+            <tr>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.sticth_color_black}} alt="" />
+                <p>Black</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.sticth_color_orange}} alt="" />
+                <p>Orange</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.sticth_color_red}} alt="" />
+                <p>Red</p>
+              </td>
+              <td class="right-border">
+                <img class="img_size" src={{ invoice.sticth_color_white}} alt="" />
+                <p>White</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <br /><br />
+    </table>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .order-table{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+    }
+    table{
+        padding-top: 100px;
+    }
+    th {
+        color: red;
+    }
+    table,thead,th,tr,td{
+        padding: 3px 3px;
+        border: 1px solid black;
+        border-radius: 8px;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <div class="order-table">
+        <table>
+            <tbody>
+                <thead><th colspan="2">YOUR ORDER</th></thead>
+                
+                <tr>
+                    <th>NAME</th>
+                    <td>{{this.name}}</td>
+                </tr>
+                <tr>
+                    <th>MOBILE NUMBER</th>
+                    <td>{{this.mobile}}</td>
+                </tr>
+                <tr>
+                    <th>YOUR ORDER</th>
+                    <td>{{this.order}}</td>
+                </tr>
+                <tr>
+                    <th>QUANTITY</th>
+                    <td>{{this.order}}</td>
+                </tr> 
+                <tr>   
+                    <th>DATE</th>
+                    <td>{{this.date}}</td>
+                </tr>
+                <tr>  
+                    <th>TIME</th>
+                    <td>{{this.time}}</td>
+                </tr>
+                <tr>
+                    <th>ADRESS</th>
+                    <td>{{this.address}}</td>
+                </tr>
+
+            </tbody>
+            
+
+        </table>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GST Invoice</title>
+        
+        <style>
+            .invoice-box {
+                max-width: 90%;
+                margin: auto;
+                padding: 10px;
+                border: 1px solid #eee;
+                box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+                font-size: 10px;
+                line-height: 15px;
+                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                color: #000;
+            }
+            
+            .invoice-box table {
+                width: 100%;
+                line-height: inherit;
+                text-align: left;
+            }
+            tr.information table {
+                margin-top: 10px;
+            }
+            .invoice-box table td {
+                padding: 5px;
+                vertical-align: top;
+            }
+                        
+            .invoice-box table tr.top table td {
+                padding-bottom: 1px;
+            }
+            
+            .invoice-box table tr.top table td.title {
+                font-size: 45px;
+                line-height: 45px;
+                color: #333;
+            }
+            
+            .invoice-box table tr.information table td {
+                padding-bottom: 2px;
+            }
+            
+            .invoice-box table tr.heading td {
+                background: #eee;
+                border-bottom: 1px solid #ddd;
+                font-weight: bold;
+            }
+            
+            .invoice-box table tr.details td {
+                padding-bottom: 20px;
+            }
+            
+            .invoice-box table tr.item td{
+                border-bottom: 1px solid #eee;
+            }
+            
+            .invoice-box table tr.item.last td {
+                border-bottom: none;
+            }
+            
+            .invoice-box table tr.total td:nth-child(2) {
+                border-top: 2px solid #eee;
+                font-weight: bold;
+            }
+            
+            @media only screen and (max-width: 600px) {
+                .invoice-box table tr.top table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+                
+                .invoice-box table tr.information table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+            }
+            
+            /** RTL **/
+            .rtl {
+                direction: rtl;
+                font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            }
+            
+            .rtl table {
+                text-align: right;
+            }
+            
+            .rtl table tr td:nth-child(2) {
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="top">
+                    <td style="padding: 0;" cellpadding="0">
+                        <table>
+                            <tr>
+                                <td style="padding: 0; width: 33%;" cellpadding="0">
+                                  <img src="{{invoice.logo_url}}" height="100px" alt="Raymond Limited"/>
+                                </td>
+                                <td cellpadding="0" style="padding: 0; width: 33%;">
+                                    <h2 align="center">Tax Invoice</h2>
+                                </td>
+                                <td  style="padding: 0; width: 33%;" align="right" cellpadding="0">
+                                    <img src="{{invoice.go_green_url}}" height="100px" alt="Go Green Initiative By Raymond"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="information">
+                    <td cellpadding="0" style="padding: 0;">
+                        <table>
+                            <tr>
+                                <td style="padding: 0;" cellpadding="0" width="40%">
+                                    <b>{{ invoice.store_format }}</b><br><br>
+                                    {{ invoice.data.store_data.address }}<br>
+                                    Email: {{ invoice.data.store_data.email }}<br>
+                                    {{ invoice.data.store_data.contact_no?("Tel: " + invoice.data.store_data.contact_no):"" }} 
+                                </td>
+                                <td style="padding: 0;" cellpadding="0" width="25%">
+                                </td>
+                                <td style="padding: 0;" cellpadding="0" width="35%">
+                                    <b>Customer: {{ invoice.data.customer.first_name }} {{ invoice.data.customer.middle_name}} {{ invoice.data.customer.last_name}}</b><br>
+                                    <b>Mobile:</b> {{ invoice.data.customer.mobile }}<br>
+                                    {{ invoice.data.customer.state?("State:" + invoice.data.customer.state):"" }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="information">
+                    <td style="padding: 0;" cellpadding="0">
+                        <table>
+                            <tr>
+                                <td style="padding: 0;"  cellpadding="0" width="40%">
+                                    <b>GSTIN : {{ invoice.data.store_data.gst_no }}</b><br>
+                                    <b>CIN NO : {{ invoice.data.store_data.cin_no }}</b><br>
+                                    <b>State :  {{ invoice.data.store_data.glstate }}</b>
+                                </td>
+                                <td style="padding: 0;" cellpadding="0" width="25%">
+                                </td>
+                                <td style="padding: 0;" cellpadding="0" width="35%">
+                                    <b>Invoice No :  {{invoice.invoice_no }}</b><br>
+                                    <b>Shop Code : {{ invoice.data.store_data.pos_code }}</b><br>
+                                    <b>Date :  {{invoice.invoice_date }}</b>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table border="1px" style="width:100%; font-size: 80%; margin-top: 20px;"  cellpadding="0" cellspacing="0">
+                <tr>
+                    <th  align="center">SlipNo</th>
+                    <th  align="center">Quality Code</th>
+                    <th  align="center">Desc</th>
+                    <th  align="center">Shade</th>
+                    <th  align="center">Size</th>
+                    <th  align="center">Rate</th>
+                    <th  align="center">Qty</th>
+                    <th  align="center">Value</th>
+                    <th  align="center">Disc %</th>
+                    <th  align="center">Disc Amount</th>
+                    <th  align="center">CGST %</th>
+                    <th  align="center">CGST Amount</th>
+                    <th  align="center">SGST %</th>
+                    <th  align="center">SGST Amount</th>
+                    <th  align="center">Net Amount</th>
+                </tr>
+                {{{description_rows}}}
+                <tr>
+                    <td  align="center"></td>
+                    <td align="center"></td>
+                    <td align="center"></td>
+                    <td align="center"></td>
+                    <td align="right">Total</td>
+                    <td align="right"></td>
+                    <td align="right">{{invoice.total_qty}}</td>
+                    <td align="right">{{ invoice.total_value}}</td>
+                    <td align="right"></td>
+                    <td align="right">{{ invoice.total_disc_amount}}</td>
+                    <td align="right"></td>
+                    <td align="right">{{ invoice.total_cgst_amount}}</td>
+                    <td align="right"></td>
+                    <td align="right">{{ invoice.total_sgst_amount}}</td>
+                    <td align="right">{{ invoice.total_amount}}</td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="30%">
+                        <table border="1px" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="padding-left: 3px;">Payment Mode</td>
+                                    <th style="padding-left: 3px;">Amount</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{{ invoice.payment_rows }}}
+                                <tr>
+                                    <td>Total</td>
+                                    <td>{{invoice.total_payment_done}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%"></td>
+                    <td width="50&">
+                        <table>
+                            <tr>
+                                <td colspan="2"><strong>For {{ invoice.store_format }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><strong>Authorized Signatory</strong></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <p>Exchange Policy:</p>
+            <p>1. If you are unsatisfied with the product on account of wrong Size -Look-Colour or Fit, we would be pleased to exchange it at any Exclusive Brand Outlet within 30 days of purchase*</p>
+            <p>2. If any fabric or manufacturing defect arises, we would be pleased to exchange it at any Exclusive Brand Outlet within 90 days of purchase*</p>
+            <!-- <p align="center">Thank You,Visit Again &nbsp;&nbsp;&nbsp; Open All Days</p> -->
+            <p align="center">This is computer generated invoice no signature required.</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,137 @@
+<header class="header">
+    <a href="#" class="logo"><img src="assets/4a38cbacb4304a90b82f758e25108e53 (2).png" alt=""></a>
+    <nav class="navbar">
+        <a href="#Home">Home</a>
+        <a href="#About">About</a>
+        <a href="#Varities">Varities</a>
+        <a routerLink="/login">Order</a>
+        <a href="#Review">Review</a>
+        <a href="#More">More</a>
+    </nav>
+    <div class="form-group">
+        <input type="text" name="" id="searchbar" placeholder="Search Foods">
+    </div>
+    <div class="icons">
+        <i class="fas fa-bars" id="menu-bars" onclick="menufunction()"></i>
+        <a class="fa fa-sign-in" aria-hidden="true" style="margin: 10px 0;margin-left:10px;padding-left:5px;font-size:15px;text-decoration:none;color: var(--green);" routerLink="/login"><b> LogIn</b></a>
+
+    </div>
+</header>
+<!-- Register Div -->
+<div class="content-wrapper" id="signup">
+    <div class="register-box">
+        <div class="card shadow-sm">
+            <div class="card-body px-0">
+                <form class="signupForm" [formGroup]="registerForm" (ngSubmit)="validateCredential(registerForm)">
+                    <div class="form-header">
+                        <h1 class="text-center text-header"><strong>Sign Up</strong></h1>
+                    </div>
+                    <fieldset class="py-3">
+                        <!-- Full Name -->
+                        <div class="form-row mb-3">
+                            <div class="input-group">
+                                <label for="name" hidden></label>
+                                <input type="text" id="name" class="form-control" placeholder="Enter Full Name"
+                                    formControlName="name" />
+                                <span class="text-danger" *ngIf="alert.error.name.length > 0">{{
+                                    alert.error.name
+                                    }}</span>
+                            </div>
+                        </div>
+                        <!-- Email Id -->
+                        <div class="form-row mb-3">
+                            <div class="input-group">
+                                <label for="email" hidden></label>
+                                <input type="text" class="form-control" placeholder="Enter Email"
+                                    formControlName="email" />
+                                <span class="text-danger" *ngIf="alert.error.email.length > 0">{{ alert.error.email
+                                    }}</span>
+                            </div>
+                        </div>
+                        <!-- Password -->
+                        <div class="form-row mb-3">
+                            <div class="input-group" style="display: flex;flex-direction:column;">
+                                <label for="password" hidden></label>
+                                <input type="password" id="pw" class="form-control" placeholder="Enter Password"
+                                    aria-describedby="passwordHelp" formControlName="password"
+                                    style="width: 40vw;border-radius: 5px;" />
+                                <div style="font-size: 13px;color:red;width: 40vw;">
+                                    <strong>
+                                        Password must be 8 characters long, contain at least 1 uppercase,
+                                        lowercase ,special
+                                        character and
+                                        number
+                                    </strong>
+                                </div>
+
+                                <span class="text-danger" *ngIf="alert.error.password.length > 0">{{
+                                    alert.error.password }}</span>
+                            </div>
+                        </div>
+                        <!-- Confirm Password -->
+                        <div class="form-row mb-3">
+                            <div class="input-group">
+                                <label for="rePassword" hidden></label>
+                                <input type="password" class="form-control" id="repw" placeholder="Confirm Password"
+                                    formControlName="confirmPassword" />
+                                <span class="text-danger" *ngIf="alert.error.confirmPassword.length > 0">{{
+                                    alert.error.confirmPassword
+                                    }}</span>
+                            </div>
+                        </div>
+                        <!-- Captcha -->
+                        <label style="font-size: 15px; margin-bottom: 10px"><strong> Enter Captcha</strong></label>
+                        <div class="form-row mb-3" style="height: 50px">
+                            <div class="input-group" style="width: 45%; float: left">
+                                <input type="text" id="capt" class="form-control" readonly />
+                            </div>
+                            <div class="input-group" style="width: 45%; float: left; margin-left: 10%">
+                                <input type="text" id="testCapt" class="form-control" />
+                            </div>
+                        </div>
+                        <h4>
+                            <strong> Captcha not visible &nbsp;&nbsp;&nbsp;</strong><i class="fas fa-sync-alt"
+                                (click)="cap()"></i>
+                        </h4>
+                        <div class="form-row mb-3" style="height: 30px">
+                            <div class="input-group" style="width: 2%; float: left;">
+                                <input type="checkbox" id="termcondition" formControlName="termsAndConditions"
+                                    style="transform : scale(2);" />
+                            </div>
+                            <!-- Term and Condition -->
+                            <div class="input-group" style="width: 93%; float: left; margin-left: 5%;margin-top: 7px;">
+                                <label style="font-size: 15px"><strong> I accept all term and condition</strong></label>
+                            </div>
+
+
+                            <span class="text-danger" style="font-size: 13px; font-weight: bold;"
+                                *ngIf="alert.error.termsAndConditions.length > 0">{{
+                                alert.error.termsAndConditions }}</span>
+                        </div>
+                        <span class="text-danger">{{ message.error }}</span>
+                        <span style="color: green">{{ message.success }}</span>
+
+                        <div class="form-row mt-4 pt-3">
+                            <div class="btn-grp text-center">
+                                <button
+                                    style="width: 10vw;border:1px solid white;border-radius:8px;background: var(--green);margin-bottom: 8px;"
+                                    [disabled]="!registerForm.valid"><a class="createLink"
+                                        style="font-size: 20px; color: blue;text-decoration: none;color: white;"><b>SignUp</b></a>
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <div style="display: flex;margin-top: 15px;gap:10px;justify-content:center;">
+                    <h4><strong>Already signed up?</strong></h4>
+                    <button
+                        style="width: 10vw;border:1px solid white;border-radius:8px;background:red;" routerLink='/login' routerLinkActive="router-link-active" ><a
+                            class="createLink"
+                            style="font-size: 20px; color: blue;text-decoration: none;color: white;"><b>Login</b></a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+swagger: "2.0"
+info:
+  title: Buy Raymond Api
+  description: Buy-Raymond api documentation, created by, RISHI
+  version: 1.0
+  contact:
+    email: saptarshi@notionalsystems.com
+  servers:
+    -url: "https://localhost:7001"
+    description: "This is local server"
+
+
+schemes: [http, https]
+
+paths:
+  /api/v2/user/login:
+    post:
+      summary: Return the object
+      description: Login info and token return
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+        400:
+          description: Bad request

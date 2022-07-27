@@ -1,0 +1,283 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GST Invoice</title>
+        
+        <style>
+            .invoice-box {
+                max-width: 90%;
+                margin: auto;
+                padding: 30px;
+                border: 1px solid #eee;
+                box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+                font-size: 16px;
+                line-height: 24px;
+                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                color: #555;
+            }
+            
+            .invoice-box table {
+                width: 100%;
+                line-height: inherit;
+                text-align: left;
+            }
+            
+            .invoice-box table td {
+                padding: 5px;
+                vertical-align: top;
+            }
+            
+            .invoice-box table tr td:nth-child(2) {
+                text-align: right;
+            }
+            
+            .invoice-box table tr.top table td {
+                padding-bottom: 1px;
+            }
+            
+            .invoice-box table tr.top table td.title {
+                font-size: 45px;
+                line-height: 45px;
+                color: #333;
+            }
+            
+            .invoice-box table tr.information table td {
+                padding-bottom: 2px;
+            }
+            
+            .invoice-box table tr.heading td {
+                background: #eee;
+                border-bottom: 1px solid #ddd;
+                font-weight: bold;
+            }
+            
+            .invoice-box table tr.details td {
+                padding-bottom: 20px;
+            }
+            
+            .invoice-box table tr.item td{
+                border-bottom: 1px solid #eee;
+            }
+            
+            .invoice-box table tr.item.last td {
+                border-bottom: none;
+            }
+            
+            .invoice-box table tr.total td:nth-child(2) {
+                border-top: 2px solid #eee;
+                font-weight: bold;
+            }
+            
+            @media only screen and (max-width: 600px) {
+                .invoice-box table tr.top table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+                
+                .invoice-box table tr.information table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+            }
+            
+            /** RTL **/
+            .rtl {
+                direction: rtl;
+                font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            }
+            
+            .rtl table {
+                text-align: right;
+            }
+            
+            .rtl table tr td:nth-child(2) {
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="top">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    <h3> Raymond Limited</h3>
+                                </td>
+                                <td></td>
+                                <td align="right">
+                                    <h1>Tax Invoice</h1>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    <b>Sold By :</b><br>
+                                    Raymond Limited Doddaballapur, <br>
+                                    NO 56, MAJARA HOSAHALLI,<br>
+                                    BEHIND, KIADB INDUSTRIAL AREA,<br>
+                                    BANGALORE - 561203 India<br>
+                                    State Code: 29<br>
+                                    State Name: Karnataka<br>
+                                </td>
+                                <td>
+                                    <b>Billing Address: </b><br>
+                                    {{ buyer.data.billing_first_name }}, {{ buyer.data.billing_last_name }}<br>
+                                    {{ buyer.data.billing_address_1 }}{{buyer.data.billing_address_2?(", " + buyer.data.billing_address_2):''}}<br>
+                                    {{buyer.data.billing_city}}, {{buyer.data.billing_state}}-{{buyer.data.billing_zip}}<br>
+                                    <b>Mobile: </b>{{ buyer.phone }}<br>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    <b></b><br>
+                                    <b>PAN No</b> : AAACR4896A<br>
+                                    <b>GST</b> : 29AAACR4896A1Z9 
+                                </td>
+                                <td>
+                                    <b>Shipping Address: </b><br>
+                                    {{ buyer.data.shipping_first_name }}, {{ buyer.data.shipping_last_name }}<br>
+                                    {{ buyer.data.shipping_address_1 }}{{buyer.data.shipping_address_2?(", " + buyer.data.shipping_address_2):''}}<br>
+                                    {{buyer.data.shipping_city}}, {{buyer.data.shipping_state}}-{{buyer.data.shipping_zip}}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    <b>Invoice No</b> : {{invoice.number.id}}<br>
+                                    <b>Invoice Date</b> : {{ invoice.invoice_date }}<br>
+                                    <b>AWB No</b> : {{ invoice.awb_no}}
+                                </td>
+                                
+                                <td>
+                                    <b></b><br>
+                                    <b>Customer Contact</b> : {{ buyer.data.user.mobile }}<br>
+                                    <b>Order No</b> : {{ invoice.number.order_id }}<br>
+                                    <b>Order Date</b> : {{ invoice.date }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table border="1px" style="width:100%; font-size: 70%;"  cellpadding="0" cellspacing="0">
+                <tr>
+                    <th  align="center">Sr. No</th>
+                    <th  align="center">Desc. </th>
+                    <th  align="center">SKU</th>
+                    <th  align="center">Qty</th>
+                    <th  align="center">Gross Amount ({{invoice.currency.main}})</th>
+                    <!-- <th>CGST (%)</th> -->
+                    <th  align="center">CGST Amount ({{invoice.currency.main}})</th>
+                    <!-- <th>SGST (%)</th> -->
+                    <th  align="center">SGST Amount ({{invoice.currency.main}})</th>
+                    <!-- <th>IGST (%)</th> -->
+                    <th  align="center">IGST Amount ({{invoice.currency.main}})</th>
+                    <!-- <th>Discount (%)</th> -->
+                    <th  align="center">Discount Amount ({{invoice.currency.main}})</th>
+
+                    <th  align="center">Total Amount ({{invoice.currency.main}})</th>
+                </tr>
+                {{{description_rows}}}
+                <tr>
+                    <td  align="center"></td>
+                    <td align="left"><b>Prepaid Amount : </b></td>
+                    <td align="center"></td>
+                    <td align="center"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <!-- <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td> -->
+                    <td align="right">{{total.main}}</td>
+                </tr>
+                <tr>
+                    <td  align="center"></td>
+                    <td align="left"><b>Shipping Cost : </b></td>
+                    <td align="center"></td>
+                    <td align="center"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <!-- <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td> -->
+                    <td align="right">{{invoice.total_shipping_cost}}</td>
+                </tr>
+                <tr>
+                    <td  align="center"></td>
+                    <td align="left">Total:</td>
+                    <td align="center">{{ invoice.total_unit_quantity }}</td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <!-- <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td>
+                    <td align="right"></td> -->
+                    <td align="right">{{invoice.grand_total}}</td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td colspan="10" style="border-left: 1px solid #000000; border-right: 1px solid #000000;">Amount Chargeable (in words)</td>
+                </tr>
+                <tr>
+                    <td colspan="10" style="border-left: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000;"><b>{{invoice.total_amount_in_text}}</b></td>
+                </tr>
+            </table>
+            <table cellpadding="0" cellspacing="0">
+            <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td style="font-size: 10px; ">
+                                    <b>Shipping Address :</b><br>
+                                    {{ buyer.data.shipping_address.shipping_address_address_1 }}<br>
+                                    {{ buyer.data.shipping_address.shipping_address_address_2 }}<br>
+                                    {{ buyer.data.shipping_address.shipping_address_state }}<br>
+                                    {{ buyer.data.shipping_address.shipping_address_city }} - {{ buyer.data.shipping_address.shipping_address_pin }}
+                                </td>
+                                <td>
+                                    <b>For Raymond Limited</b> :<br><br>
+                                    <p style="font-size: 8px; color: #b5b5b5;">THIS INVOICE IS COMPUTER GENERATED HENCE DOES NOT NEED AUTHORISED SIGNATURE</p>
+                                    <b>Authorised Signatory</b>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<header class="header">
+    <a href="#" class="logo"><img src="assets/4a38cbacb4304a90b82f758e25108e53 (2).png" alt=""></a>
+    <nav class="navbar">
+        <a href="#Home">Home</a>
+        <a href="#About">About</a>
+        <a href="#Varities">Varities</a>
+        <a routerLink="/login">Order</a>
+        <a href="#Review">Review</a>
+        <a href="#More">More</a>
+    </nav>
+    <div class="name">
+        <span style="font-size: 15px;"><strong> Welcome <br>{{username}}</strong></span>
+    </div>
+    <div class="icons">
+
+        <a class="fas fa-sign-out-alt" aria-hidden="true"
+            style="margin: 10px 0;margin-left:10px;padding-left:5px;font-size:15px;text-decoration:none;color: var(--green);"
+            ><button (click)="logout()"><b>Logout</b></button></a>
+
+    </div>
+</header>
+<section class="order" id="Order" *ngIf="!isSubmit">
+    <h1 class="heading" style="text-align: center;color: var(--green);"><strong>Order Now</strong></h1>
+
+    <form action="">
+        <div class="inputBox">
+
+            <div class="input">
+                <span>Your Name</span>
+                <input type="text" placeholder="Enter Your Name" id="name" required>
+            </div>
+            <div class="input">
+                <span>Your Phone Number</span>
+                <input type="text" placeholder="Enter Your phone number" id="mobile" required>
+            </div>
+            <div class="input">
+                <span>Your order</span>
+                <input type="text" placeholder="Enter food name" id="order" required>
+            </div>
+            <div class="input">
+                <span>How Much</span>
+                <input type="text" id="quantity" placeholder="Enter quantity (eg. 2 pc,2 plate)" required>
+            </div>
+            <div class="input">
+                <span>Date</span>
+                <input type="date" id="date" required>
+            </div>
+            <div class="input">
+                <span>Time</span>
+                <input type="time" id="time" required>
+            </div>
+            <div class="input">
+                <span>Your Adress</span>
+                <textarea name="" placeholder="Enter your adress" id="address" cols="30" rows="10" required></textarea>
+            </div>
+            <div class="input">
+                <span>Your Message</span>
+                <textarea name="" placeholder="Enter your message" id="messege" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+        <div class="error" style="margin: 15px 0;">
+            <span class="popuptext" id="myPopup" style="text-align: center;font-size:30px;"><strong style="color: red;font-size: 50
+            px;text-align: center;display: block;margin: auto;">{{error}}</strong></span>
+        </div>
+        <button type="submit" (click)="submit()" style="display: block;margin:auto;" class="btn">Submit</button>
+    </form>
+</section>
+
+<div class="alert" *ngIf="isSubmit">
+    <img src="assets/Green-Round-Tick.png" alt="" />
+    <h1>Thank You For Your Order</h1>
+    <button class="btn"><a id="pdf" href="{{this.link}}" style="text-decoration:none;color: white;">Show My
+            Order</a></button>
+</div>

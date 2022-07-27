@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Lobster&family=Nunito:wght@400;600&display=swap');
+
+.home {
+    width: 100vw;
+    padding-bottom: 10px;
+}
+
+.home .catchline {
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    background-image:url('src/assets/art-illustration-200165228.jpg');
+    margin-top: 100px;
+    text-align: center;
+    padding-top: 60px;
+    font-size: 4rem;
+    animation: color_change 5s infinite;
+    text-shadow: 2px 2px 5px rgb(27, 0, 0);
+}
+
+@keyframes color_change {
+    0% {
+        color: rgb(248, 243, 243);
+    }
+
+    50% {
+        color: rgb(235, 235, 8);
+    }
+
+    100% {
+        color: aqua;
+    }
+}
+
+.home-slider {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+.mySlides {
+    display: block;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 2rem;
+    padding-top: 8rem;
+}
+
+.home .home-slider .mySlides .content {
+    flex: 1 1 20rem;
+}
+
+.home .home-slider .mySlides .image {
+    flex: 1 1 20rem;
+}
+
+.home .home-slider .mySlides .image img {
+    width: 40vw;
+    margin-left: 10rem;
+}
+
+.home .home-slider .mySlides .content span {
+    color: var(--green);
+    font-size: 2.5rem;
+}
+
+.home .home-slider .mySlides .content h3 {
+    color: var(--black);
+    font-size: 6rem;
+}
+
+.home .home-slider .mySlides .content p {
+    color: var(--light-color);
+    font-size: 2.2rem;
+    padding: 2rem 0;
+    line-height: 1.2;
+}
+
+.btn {
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color: white;
+    background: var(--black);
+    border-radius: .5rem;
+    cursor: pointer;
+    padding: .8rem 3rem;
+    text-align: center;
+}
+
+.btn:hover {
+    background: var(--green);
+    letter-spacing: .1rem;
+}
+
+/* varities section starts*/
+
+.varities{
+    padding-top: 15px;
+}
+ .heading{
+    text-align: center;
+    font-size: 3rem;
+    color: var(--green);
+}
+
+.varities .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit,minmax(28rem,1fr));
+    gap: 1.9rem;
+}
+.varities .box-container .box img{
+    width: 20vw;
+}
+.varities .box-container .box img:hover{
+    transition: transform ease-in-out 0.3s;
+    transform: scale(1.5);
+}
+.varities .box-container .box{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2.5rem;
+    padding:2.5rem;
+    background: white;
+    border: 2px solid rgba(0,0,0,.2);
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+.varities .box-container .box .fa-eye{
+    left: .8rem;
+}
+.varities .box-container .box .fa-eye:hover{
+    background: var(--green);
+    color: white;
+}
+.varities .box-container .box h3{
+    color: var(--black);
+    font-size: 2.5rem;
+}
+.varities .box-container .box .stars{
+    padding: 1rem 0;
+}
+.varities .box-container .box i{
+    font-size: 1.7rem;
+    color: rgba(243, 188, 11, 0.909);
+}
+.varities .box-container .box span{
+    color: var(--green);
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin-right: 1rem;
+}
+.add-cart a{
+    color: white;
+}
+
+.popuptext{
+    visibility: hidden;
+    width: 260px;
+    background-color: rgb(254, 244, 244);
+    color: rgb(11, 246, 27);
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    z-index: 1;
+    margin-top: 20px;
+    position: absolute;
+  }
+  
+.show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  } 
+
+  /* about section */
+.about{
+    margin-top: 30px;
+  }
+.about .icons-container{
+    margin: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+}
+.about .icons-container .icons{
+    border: 2px solid var(--light-color);
+    background: var(--green);
+    align-items: center;
+    justify-content: center;
+    border-radius: .5rem;
+    color: white;
+    padding: 2.5rem;
+    font-size: 2rem;
+    box-shadow: var(--box-shadow);
+}
+.about .btn{
+   display: block;
+   margin: auto;
+   text-align: center;
+   width: 20rem;
+}
+
+
+/* review section */
+.review{
+    padding-top: 15px;
+}
+.review-slider{
+    display: block;
+    margin: auto;
+    width: 70vw;
+}
+.review .slide{
+    margin-top: 2rem;
+    padding: 2rem 10rem;
+    border: 2px solid var(--light-color);
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    position: relative;
+}
+.review .slide .fa-quote-right{
+    position: absolute;
+    top: 2rem;right: 2rem;
+    font-size: 6rem;
+    color: var(--light-color);
+}
+.review .slide .user{
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding-bottom: 1.5rem;
+}
+.review img{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.review .slide .user h3{
+    color: var(--black);
+    font-size: 2rem;
+    padding-bottom: .5rem;
+}
+.review .slide .user i{
+    font-size: 1.3rem;
+    color: gold;
+}
+.review .slide .user p{
+    font-size: 2rem;
+    line-height: 1.8rem;
+    color: var(--black);
+    text-align: center;
+    margin-left: 10rem;
+}
+
+/* footer section */
+
+.footer{
+    text-align: center;
+    margin-top: 50px;
+}
+.footer .box-container{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(25rem,1fr));
+    gap: 1.5rem;
+    border: 2px solid var(--light-color);
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+}
+.footer .box-container .box h3{
+    padding: .5rem 0;
+    font-size: 2.5rem;
+    color: var(--black);
+}
+.footer .box-container .box a{
+    display: block;
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: var(--light-color);
+}
+.footer .box-container .box i{
+    color: var(--green);
+    padding-right: 1rem;
+}
+.footer .box-container .box a:hover{
+    color: var(--green);
+    text-decoration: underline;
+}
+.footer .credit{
+    text-align: center;
+    border-top: .1rem solid black;
+    font-size: 2rem;
+    color: var(--black);
+    padding: .5rem;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+.footer .credit span{
+    color: red;
+}
+a{
+    text-decoration: none;
+}
+
+/* responsive */
+
+@media(max-width:991px){
+    html{
+        font-size: 55%;
+    }
+    header{
+        padding: 1rem 2rem;
+    }
+    section{
+        padding: 2rem;
+    }
+    .home .catchline{
+        margin-top: 10rem;
+    }
+    .varities .box-container .box img{
+        height: auto;
+        width: 100%;
+        margin: 1rem 0;
+    }
+}
+@media(max-width:768px){
+    header .icons #menu-bars{
+        display: inline-block;
+    }
+    header .navbar{
+        position: absolute;
+        top: 100%; left:0; right: 0;
+        background: white;
+        border-top: .1rem solid rgb(117, 115, 115);
+        border-bottom: .1rem solid rgb(122, 120, 120);
+        padding: 1.2rem;
+        clip-path: polygon(0 0,100% 0,100% 0,0 0);
+    }
+    header .navbar.active{
+        clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+    }
+    header .navbar a{
+        display: block;
+        padding: 1.5rem;
+        margin: 1rem;
+        font-size: 2rem;
+        background: white;
+    }
+    #search-form #search-box{
+        width: 90%;
+        margin: 0 1rem;
+    }
+    .home .home-slider .mySlides .content h3{
+        font-size: 5rem;
+    }
+    
+}
+
+@media(max-width:450px){
+    .header{
+        width: 30vw;
+    }
+}
+@media(max-width:450px){
+    html{
+        font-size: 50%;
+    }
+    .header{
+        width: 100vw;
+        height:auto;
+    }
+    .varities .box-container .box img{
+        height: auto;
+        width: 100%;
+        margin: 1rem 0;
+    }
+    .order form .inputBox .input{
+        width: 100%;
+    }
+}
+

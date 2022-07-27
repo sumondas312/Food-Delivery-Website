@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order</title>
+  </head>
+  <style>
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th {
+      padding: 5px 20px;
+    }
+    tr {
+      text-align: center;
+    }
+    .table {
+      /* border: 1px solid black; */
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <body>
+    <div class="table" style="overflow-x: auto">
+      <table>
+        <thead>
+          <th colspan="7"><h2>Order Booking Report</h2></th>
+        </thead>
+        <thead>
+          <th colspan="7" style="text-align: left"><strong style="color: red">Season</strong> : {{this.season}}</th>
+        </thead>
+        <thead>
+          <th colspan="7" style="text-align: left">
+            <strong style="color: red">Buyer Name & Code</strong> : {{this.buyer_name}}&nbsp;{{this.buyer_code}}
+          </th>
+        </thead>
+        <thead>
+          <th colspan="7" style="text-align: left"><strong style="color: red">City</strong> : {{this.city}}</th>
+        </thead>
+        <thead>
+          <th colspan="7" style="text-align: left"><strong style="color: red">Tag No</strong> : {{this.tagno}}</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th style="color: blue">No.</th>
+            <th style="color: blue">Serial No.</th>
+            <th style="color: blue">Quality No.</th>
+            <th style="color: blue">UC</th>
+            <th style="color: blue">Shade /Units</th>
+            <th style="color: blue">DP</th>
+            <th style="color: blue">Qty.</th>
+          </tr>
+          {{#each itemDetails}}
+          <tr>
+            <td>{{this.no}}</td>
+            <td>{{this.serialno}}</td>
+            <td>{{this.qualityno}}</td>
+            <td>{{this.uc}}</td>
+            <td>{{this.units}}</td>
+            <td>{{this.dp}}</td>
+            <td>{{this.qty}}</td>
+          </tr>
+          {{/each}}
+          <tr>
+            <th colspan="4" style="text-align: left">Total Qty : {{this.totalquamtity}}</th>
+            <th style="text-align: left">Total Value : {{this.totalvalue}}</th>
+            <th colspan="2" style="text-align: left">Mtrs:{{this.mtrs}}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

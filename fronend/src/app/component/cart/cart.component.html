@@ -1,0 +1,27 @@
+<header class="header">
+    <a href="#" class="logo"><img src="assets/4a38cbacb4304a90b82f758e25108e53 (2).png" alt=""></a>
+    <nav class="navbar">
+        <a href="#Home">Home</a>
+        <a href="#About">About</a>
+        <a href="#Varities">Varities</a>
+        <a routerLink="/login">Order</a>
+        <a href="#Review">Review</a>
+        <a href="#More">More</a>
+    </nav>
+    <div class="name">
+        <span style="font-size: 15px;"><strong> Welcome {{username}}</strong></span>
+    </div>
+    <div class="icons">
+        
+        <a class="fas fa-sign-out-alt" aria-hidden="true" style="margin: 10px 0;margin-left:10px;padding-left:5px;font-size:15px;text-decoration:none;color: var(--green);" routerLink="/login"><b>Logout</b></a>
+
+    </div>
+</header>
+<div id="cart-before">
+    <div class="center">
+        <img src="assets/istockphoto-121547275-612x612.jpg" alt="">
+        <h4>Your Plate is empty!!</h4>
+        <a href="" style="color: white;font-size: 15px;" routerLink="/order"><button class="btn btn-primary">Order
+                Now</button></a>
+    </div>
+</div>
